@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Download Example</title>
+</head>
+<body>
+    <h1>Auto Download Example</h1>
+    <script>
+        // Create a new blob with the content you want to download
+        const blob = new Blob(["This is a sample text file."], { type: 'text/plain' });
+
+        // Create a URL for the blob
+        const url = URL.createObjectURL(blob);
+
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'example.txt';  // The name of the file to be downloaded
+
+        // Append the link to the body
+        document.body.appendChild(link);
+
+        // Trigger the download by programmatically clicking the link
+        link.click();
+
+        // Clean up by removing the link and revoking the object URL
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    </script>
+</body>
+</html>
